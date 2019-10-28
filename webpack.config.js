@@ -35,7 +35,7 @@ module.exports = {
     port: 3000,
     open: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      '/api': 'http://10.0.2.15:8080'
     }
   },
   plugins: [
