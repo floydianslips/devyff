@@ -5,6 +5,9 @@ const axios = require('axios')
 const app = express();
 const cors = require('cors');
 const allPlayers = require('./routes/allPlayers')
+const ENV         = process.env.ENV || "development";
+const knexConfig  = require("../../knexfile");
+const knex        = require("knex")(knexConfig[ENV]);
 
 // app.use(cors);
 // app.use(bodyParser.json());
@@ -17,7 +20,7 @@ app.use(function(req, res, next) {
    next();
  });
 
-app.use('/api/allPlayers', allPlayers())
+app.use('/api/allPlayers', allPlayers(knex))
 
 app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 
