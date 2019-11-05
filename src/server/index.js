@@ -9,13 +9,14 @@ const allPlayers = require('./routes/allPlayers')
 // app.use(cors);
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
-// app.use(function(req, res, next) {
-  // res.header("Access-Control-Allow-Origin", "*");
+app.use(express.static('dist'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
   // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  // next();
-// });
-app.use(express.static('dist'));
+   next();
+ });
+
 app.use('/api/allPlayers', allPlayers())
 
 app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));

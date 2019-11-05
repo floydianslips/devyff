@@ -15,16 +15,14 @@ export default class App extends Component {
     // axios.get('localhost:8080/api')
     // console.log("test")
     axios.get('http://localhost:8080/api/allPlayers')
-.then(response => {
-  console.log("help me")
-  return response.data
-} )
-.then((data) => {
-  console.log(data)
-})
-.catch((err) => {
-  console.log('error', err)
-})
+      .then((res) => {
+        console.log(res.data.player, "help me")})
+        // return response.data})
+     // .then((data) => {
+     //   console.log(data)})
+      .catch((err) => {
+        console.log('error', err)})
+
     fetch('/api/getUsername')
       .then(res => res.json())
       .then(user => this.setState({ username: user.username }));
