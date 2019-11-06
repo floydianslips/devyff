@@ -8,24 +8,32 @@ export default class App extends Component {
   state = { username: null };
 
   componentDidMount() {
-    // axios.get('https:www54.myfantasyleague.com/2005/export?TYPE=players&details')
-    //   .then(res => {
-    //     console.log(res.data)
-    //   } )
-    // axios.get('localhost:8080/api')
-    // console.log("test")
-    axios.get('http://localhost:8080/api/allPlayers')
-      .then((res) => {
-        console.log(res.data.player, "help me")})
-        // return response.data})
-     // .then((data) => {
-     //   console.log(data)})
-      .catch((err) => {
-        console.log('error', err)})
-
     fetch('/api/getUsername')
       .then(res => res.json())
       .then(user => this.setState({ username: user.username }));
+    // axios.get('http://localhost:8080/api/leagueInfo/franchises')
+    //   .then((res) => {
+    //     console.log("response", res)
+    //   })
+      // axios.get('http://localhost:8080/api/leagueInfo/info')
+      // .then((res) => {
+      //   console.log("response", res)
+      // })
+      axios.get('http://localhost:8080/api/leagueInfo/assets')
+      .then((res) => {
+        console.log("response", res)
+      })
+    }
+
+
+
+
+  populateAllPlayersDB = () => {
+    axios.get('http://localhost:8080/api/allPlayers')
+      .then((res) => {
+        console.log(res.data.player, "help me")})
+      .catch((err) => {
+        console.log('error', err)})
   }
 
   render() {
